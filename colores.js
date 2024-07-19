@@ -5,18 +5,16 @@ const path = require('path');
 function isBlack(hex) {
     hex = hex.replace(/^#/, '');
 
+    // Asegúrate de que el formato sea hexadecimal largo
     if (hex.length === 3) {
-        hex = hex.split('').map(function(hex) {
-            return hex + hex;
-        }).join('');
+        hex = hex.split('').map(hex => hex + hex).join('');
     }
 
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
 
-    const threshold = 64;
-
+    const threshold = 64; // Umbral para considerar un color como negro
     return r < threshold && g < threshold && b < threshold;
 }
 
@@ -50,10 +48,15 @@ function clasificarClasesPorColor(cssText, clases) {
         const reglas = obtenerReglasParaClase(cssText, clase);
         
         // Busca la propiedad color con valores distintos a negro o vacíos
-        const colorMatch = /color\s*:\s*(#[0-9a-fA-F]{3,6}|(?:rgb|hsl)a?\([^\)]*\)|[a-zA-Z]+)\s*;/i.exec(reglas);
+        const colorMatch = /color\s*:\s*(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\s*;/i.exec(reglas);
         
-        if (colorMatch && !isBlack(colorMatch[1])) {
-            clasesConColor.push(clase);
+        if (colorMatch) {
+            if (isBlack(colorMatch[1])) {
+                // Considera el negro como color
+                clasesConColor.push(clase);
+            } else {
+                clasesConColor.push(clase);
+            }
         } else {
             clasesSinColor.push(clase);
         }

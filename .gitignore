@@ -1,0 +1,34 @@
+# Ignorar la carpeta node (asumiendo que es 'node_modules')
+node_modules/
+
+# Ignorar la carpeta base que contiene archivos HTML, imágenes y CSS
+base/
+
+# No ignorar archivos CSS, HTML y JS en la carpeta raíz
+!/*.css
+!/*.html
+!/*.js
+
+# Ignorar archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuración de IDEs
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Ignorar archivos de log
+*.log
+
+# Ignorar archivos generados por el sistema
+*.swp
+*.swo
+
+# Ignorar archivos de compilación o generación
+*.tmp
+*.bak
+
+# Ignorar archivos CSS generados
+*.min.css

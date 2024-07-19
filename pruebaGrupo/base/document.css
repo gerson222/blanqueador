@@ -1,0 +1,1728 @@
+﻿@charset "UTF-8";
+
+* {
+   margin: 0;
+   padding: 0;
+   text-indent: 0;
+}
+
+.h4,
+h4 {
+   color: black;
+   font-family: Tahoma, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s1 {
+   color: black;
+   font-family: Tahoma, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s2 {
+   color: black;
+   font-family: Tahoma, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s3 {
+   color: black;
+   font-family: Tahoma, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s4 {
+   color: black;
+   font-family: Tahoma, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 9pt;
+}
+
+.s5 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 9pt;
+}
+
+h3 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 9pt;
+}
+
+.h2,
+h2 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: italic;
+   font-weight: bold;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s7 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: italic;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.p,
+p {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   margin: 0pt;
+}
+
+.s8 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s9 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.h1,
+h1 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s10 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s11 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s12 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+}
+
+.s13 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+}
+
+.s14 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+}
+
+.s16 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 5.5pt;
+}
+
+.s17 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5.5pt;
+}
+
+.s18 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 4pt;
+}
+
+.s19 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 4pt;
+}
+
+.s20 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s21 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s22 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: -2pt;
+}
+
+.s23 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s24 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: 5pt;
+}
+
+.s25 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s26 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s27 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s28 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -2pt;
+}
+
+.s29 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -2pt;
+}
+
+.s30 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s31 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+   vertical-align: 2pt;
+}
+
+.s32 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+}
+
+.s33 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 8.5pt;
+}
+
+.s34 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 8.5pt;
+}
+
+.s35 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8.5pt;
+}
+
+.s36 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: -2pt;
+}
+
+.s37 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s38 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s39 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s40 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -6pt;
+}
+
+.s41 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s42 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s43 {
+   color: black;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s44 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -2pt;
+}
+
+.s45 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s46 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+}
+
+.s47 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 4pt;
+}
+
+.s48 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+   vertical-align: -4pt;
+}
+
+.s49 {
+   color: #F00;
+   font-family: "MS PGothic", sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s50 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s51 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 3.5pt;
+   vertical-align: -1pt;
+}
+
+.s52 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 3.5pt;
+}
+
+.s53 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 3.5pt;
+   vertical-align: 2pt;
+}
+
+.s54 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 2pt;
+}
+
+.s55 {
+   color: black;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s56 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 5.5pt;
+}
+
+.s57 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -6pt;
+}
+
+.s58 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 12pt;
+}
+
+.s59 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: 5pt;
+}
+
+.s60 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s62 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: line-through;
+   font-size: 11pt;
+}
+
+.s63 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: line-through;
+   font-size: 6.5pt;
+   vertical-align: -2pt;
+}
+
+.s64 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 2pt;
+}
+
+.s65 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s66 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 1pt;
+}
+
+.s67 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5.5pt;
+   vertical-align: -3pt;
+}
+
+.s68 {
+   color: #EF403C;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s69 {
+   color: #EF403C;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -2pt;
+}
+
+.s70 {
+   color: #EF403C;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 4pt;
+}
+
+.s71 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5.5pt;
+   vertical-align: 1pt;
+}
+
+.s72 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5.5pt;
+   vertical-align: 2pt;
+}
+
+.s73 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5.5pt;
+   vertical-align: 5pt;
+}
+
+.s74 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+   vertical-align: -5pt;
+}
+
+.s75 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+}
+
+.s76 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -6pt;
+}
+
+.s77 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s78 {
+   color: #333;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s79 {
+   color: #333;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s80 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+   vertical-align: 1pt;
+}
+
+.s81 {
+   color: #202933;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s82 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s83 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s84 {
+   color: #202933;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s85 {
+   color: #202933;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s86 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: 4pt;
+}
+
+.s87 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+   vertical-align: 1pt;
+}
+
+.s88 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s89 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 3pt;
+}
+
+.s90 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+   vertical-align: -2pt;
+}
+
+.s91 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5pt;
+}
+
+.s92 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+}
+
+.s93 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+}
+
+.s94 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s95 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 9pt;
+}
+
+.s96 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+   vertical-align: 1pt;
+}
+
+.s97 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s98 {
+   color: black;
+   font-family: Symbol, serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s99 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s100 {
+   color: #CD171D;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s101 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s102 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 6.5pt;
+   vertical-align: 6pt;
+}
+
+.s103 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 3.5pt;
+   vertical-align: -1pt;
+}
+
+.s104 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 3.5pt;
+}
+
+.s105 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+   vertical-align: 6pt;
+}
+
+.s106 {
+   color: black;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+   vertical-align: -5pt;
+}
+
+.s107 {
+   color: black;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+}
+
+.s108 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 5.5pt;
+}
+
+.s109 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+}
+
+.s110 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s112 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 1pt;
+}
+
+.s113 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 11pt;
+}
+
+.s114 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 8pt;
+}
+
+.s115 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 6.5pt;
+   vertical-align: -1pt;
+}
+
+.s116 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 6.5pt;
+}
+
+.s117 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+}
+
+.s118 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -1pt;
+}
+
+.s119 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+}
+
+.s120 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 1pt;
+}
+
+.s121 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 7pt;
+}
+
+.s122 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+   vertical-align: -5pt;
+}
+
+.s123 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -3pt;
+}
+
+.s124 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 8pt;
+   vertical-align: 6pt;
+}
+
+.s125 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 3pt;
+}
+
+.s126 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 4pt;
+}
+
+.s127 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 2pt;
+}
+
+.s128 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 6pt;
+}
+
+.s129 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: 4pt;
+}
+
+.s130 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 9pt;
+}
+
+.s131 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: 4pt;
+}
+
+.s132 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 6.5pt;
+}
+
+.s133 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 5pt;
+}
+
+.s134 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 8pt;
+}
+
+.s136 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 6.5pt;
+   vertical-align: 5pt;
+}
+
+.s137 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s138 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -5pt;
+}
+
+.s140 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -6pt;
+}
+
+.s141 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 12.5pt;
+   vertical-align: -1pt;
+}
+
+.s142 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12.5pt;
+}
+
+.s143 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -1pt;
+}
+
+.s144 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+   vertical-align: -2pt;
+}
+
+.s145 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 4pt;
+}
+
+.s146 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 2pt;
+}
+
+.s147 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+   vertical-align: 6pt;
+}
+
+.s148 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -5pt;
+}
+
+.s149 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: -1pt;
+}
+
+.s150 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 2pt;
+}
+
+.s151 {
+   color: #9C363B;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 9.5pt;
+}
+
+.s153 {
+   color: #824848;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10.5pt;
+}
+
+.s154 {
+   color: #9C363B;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10.5pt;
+}
+
+.s155 {
+   color: #C13854;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 9pt;
+}
+
+.s156 {
+   color: #824848;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+}
+
+.s157 {
+   color: #9C363B;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s158 {
+   color: #9A4F57;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s159 {
+   color: #9A4F57;
+   font-family: "Times New Roman", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+}
+
+.s162 {
+   color: #9A4F57;
+   font-family: "Times New Roman", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s163 {
+   color: #9C363B;
+   font-family: "Times New Roman", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s164 {
+   color: #824848;
+   font-family: "Times New Roman", serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s168 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: -6pt;
+}
+
+.s170 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 7.5pt;
+}
+
+.s171 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7.5pt;
+   vertical-align: 1pt;
+}
+
+.s172 {
+   color: black;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 4pt;
+}
+
+.s173 {
+   color: black;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s174 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+}
+
+.s176 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: italic;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s177 {
+   color: #202529;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s179 {
+   color: #202529;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6.5pt;
+   vertical-align: 4pt;
+}
+
+.s180 {
+   color: black;
+   font-family: "MS PGothic", sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s181 {
+   color: #F00;
+   font-family: "Century Gothic", sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+}
+
+.s182 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 11pt;
+   vertical-align: 4pt;
+}
+
+.s183 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 14pt;
+}
+
+.s184 {
+   color: #F00;
+   font-family: "Times New Roman", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 9.5pt;
+}
+
+.s185 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 9.5pt;
+}
+
+.s186 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 9.5pt;
+}
+
+.s187 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+}
+
+.s188 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   font-size: 6.5pt;
+}
+
+.s189 {
+   color: #F00;
+   font-family: "Cambria Math", serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 6pt;
+}
+
+.s190 {
+   color: #F00;
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 12pt;
+   vertical-align: -6pt;
+}
+
+.s191 {
+   color: #F00;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 10pt;
+}
+
+.s192 {
+   color: black;
+   font-family: Calibri, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: none;
+   font-size: 7pt;
+   vertical-align: 5pt;
+}
+
+table,
+tbody {
+   vertical-align: top;
+   overflow: visible;
+}

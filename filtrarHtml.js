@@ -24,6 +24,10 @@ function modificarTextoRespuesta($) {
       const texto = $(element).text();
       if (texto.includes('Respuesta')) {
          $(element).text('Respuesta:..........................');
+         $(element).removeAttr('class');
+         let currentStyle = $(element).attr('style') || '';
+         currentStyle += ' color: black; font-family: Calibri, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 12pt;';
+         $(element).attr('style', currentStyle);
       }
    });
 }

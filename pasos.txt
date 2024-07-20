@@ -1,0 +1,19 @@
+1) colocar el .css los .html o .htm dentro de base y las imagenes
+
+2) revisar y eliminar imagenes dentro de base
+
+3) confirmar la ruta relativa del .css en colores.js
+
+4) ajustacor coloresmanuales (colores en palabras) en colores.js
+
+5) revisar que resultado.json este vacio
+
+6) ejecutar node colores.js
+
+7) ajustacor clasesadicionales (las de la navegacion) en filtrarHtml.js
+
+8) ajustar si los archivos son .html o .htm
+
+9) confirmar la ruta relativa de los .html o .htm en colores.js
+
+10) ejecutar node filtrarHtml.js

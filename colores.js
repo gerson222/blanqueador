@@ -1,21 +1,61 @@
 const fs = require('fs');
 const path = require('path');
 
-// Verifica si un color es negro o no
-function isBlack(hex) {
-   hex = hex.replace(/^#/, '');
+// Colores predefinidos a mano (añade o modifica según necesites)
+const coloresManuales = {
+   negros: ['black'], // Colores negros que quieres considerar
+   rojos: []   // Colores rojos que quieres considerar
+};
 
-   // Asegúrate de que el formato sea hexadecimal largo
-   if (hex.length === 3) {
-      hex = hex.split('').map(hex => hex + hex).join('');
+// Conjuntos para almacenar colores únicos
+const coloresNegrosDetectados = new Set([...coloresManuales.negros]);
+const coloresRojosDetectados = new Set([...coloresManuales.rojos]);
+
+// Mapa de nombres de colores a hexadecimales
+const nombreColorAHex = {
+   'black': '#000000',
+   'red': '#FF0000',
+   'darkred': '#8B0000',
+   'firebrick': '#B22222',
+   'crimson': '#DC143C',
+   // Puedes agregar más colores aquí
+};
+
+// Verifica si un color es negro o no
+function isBlack(color) {
+   color = color.toLowerCase(); // Normaliza el color a minúsculas
+
+   // Maneja colores definidos como palabra
+   if (nombreColorAHex[color]) {
+      color = nombreColorAHex[color];
    }
 
-   const r = parseInt(hex.substring(0, 2), 16);
-   const g = parseInt(hex.substring(2, 4), 16);
-   const b = parseInt(hex.substring(4, 6), 16);
+   if (color.startsWith('#')) {
+      color = color.replace(/^#/, '');
 
-   const threshold = 64; // Umbral para considerar un color como negro
-   return r < threshold && g < threshold && b < threshold;
+      // Asegúrate de que el formato sea hexadecimal largo
+      if (color.length === 3) {
+         color = color.split('').map(hex => hex + hex).join('');
+      }
+
+      const r = parseInt(color.substring(0, 2), 16);
+      const g = parseInt(color.substring(2, 4), 16);
+      const b = parseInt(color.substring(4, 6), 16);
+
+      const threshold = 64; // Umbral para considerar un color como negro
+      const isNegro = r < threshold && g < threshold && b < threshold;
+
+      if (isNegro) {
+         coloresNegrosDetectados.add(`#${color}`);
+      } else {
+         coloresRojosDetectados.add(`#${color}`);
+      }
+
+      return isNegro;
+   } else {
+      // Si no es un color en formato hexadecimal, no es negro
+      return false;
+   }
 }
 
 // Obtiene todas las clases y etiquetas definidas en el CSS
@@ -52,9 +92,13 @@ function clasificarClasesPorColor(cssText, clases) {
       const colorMatch = /color\s*:\s*(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\s*;/i.exec(reglas);
       
       if (colorMatch) {
-         if (colorMatch[1].toLowerCase() === 'black' || isBlack(colorMatch[1])) {
-            // Considera el negro como color
+         const color = colorMatch[1].toLowerCase();
+         if (color === 'black' || isBlack(color)) {
             clasesNegro.push(clase);
+         } else if (coloresManuales.rojos.includes(color) || coloresRojosDetectados.has(`#${color}`)) {
+            // Maneja colores predefinidos y detectados
+            coloresRojosDetectados.add(color);
+            clasesConColor.push(clase);
          } else {
             clasesConColor.push(clase);
          }
@@ -66,7 +110,9 @@ function clasificarClasesPorColor(cssText, clases) {
    return {
       clasesConColor,
       clasesNegro,
-      clasesSinColor
+      clasesSinColor,
+      coloresNegros: Array.from(coloresNegrosDetectados),
+      coloresRojos: Array.from(coloresRojosDetectados)
    };
 }
 
@@ -84,14 +130,27 @@ function procesarCss(rutaArchivo) {
             return;
       }
 
-      const { clasesConColor, clasesNegro, clasesSinColor } = obtenerDatosCSS(cssText);
+      const { clasesConColor, clasesNegro, clasesSinColor, coloresNegros, coloresRojos } = obtenerDatosCSS(cssText);
 
-      console.log('Clases con color:', clasesConColor);
-      console.log('Clases negras:', clasesNegro);
-      console.log('Clases sin color:', clasesSinColor);
+      const resultado = {
+         clasesConColor,
+         clasesNegro,
+         clasesSinColor,
+         coloresNegros,
+         coloresRojos
+      };
+
+      // Escribe el resultado en un archivo JSON
+      fs.writeFile('resultado.json', JSON.stringify(resultado, null, 2), (err) => {
+         if (err) {
+            console.error('Error al escribir el archivo JSON:', err);
+         } else {
+            console.log('Datos guardados en resultado.json');
+         }
+      });
    });
 }
 
 // Especifica la ruta del archivo CSS que quieres procesar
-const rutaArchivoCss = path.join(__dirname, 'pruebaGrupo/base/document.css');
+const rutaArchivoCss = path.join(__dirname, 'base/document.css');
 procesarCss(rutaArchivoCss);

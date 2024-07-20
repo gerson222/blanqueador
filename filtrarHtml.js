@@ -17,6 +17,17 @@ function eliminarEtiqueta($, selector) {
    $(selector).remove();
 }
 
+// Modifica el texto de las etiquetas específicas si contienen "Respuesta"
+function modificarTextoRespuesta($) {
+   // Selecciona las etiquetas p, h1, h2, h3, h4 dentro del body
+   $('body').find('p, h1, h2, h3, h4').each((index, element) => {
+      const texto = $(element).text();
+      if (texto.includes('Respuesta')) {
+         $(element).text('Respuesta:..........................');
+      }
+   });
+}
+
 // Elimina etiquetas basadas en los arrays obtenidos
 function procesarHtml(archivoHtml, colores) {
    const { clasesConColor, coloresRojos, clasesNegro, clasesSinColor } = colores;
@@ -29,7 +40,7 @@ function procesarHtml(archivoHtml, colores) {
       const tieneColor = clases.some(clase => clasesConColor.includes(clase));
       const tieneClaseExtra = clases.some(clase => clasesAdicionales.includes(clase));
       if (tieneColor || tieneClaseExtra) {
-            eliminarEtiqueta($, element);
+         eliminarEtiqueta($, element);
       }
    });
 
@@ -38,7 +49,7 @@ function procesarHtml(archivoHtml, colores) {
       const style = $(element).attr('style');
       const tieneColorRojo = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
       if (tieneColorRojo) {
-            eliminarEtiqueta($, element);
+         eliminarEtiqueta($, element);
       }
    });
 
@@ -46,10 +57,10 @@ function procesarHtml(archivoHtml, colores) {
    $('img').each((index, element) => {
       const src = $(element).attr('src');
       if (src) {
-            const rutaImagen = path.join(path.dirname(archivoHtml), src);
-            if (!fs.existsSync(rutaImagen)) {
-               eliminarEtiqueta($, element);
-            }
+         const rutaImagen = path.join(path.dirname(archivoHtml), src);
+         if (!fs.existsSync(rutaImagen)) {
+            eliminarEtiqueta($, element);
+         }
       }
    });
 
@@ -57,9 +68,12 @@ function procesarHtml(archivoHtml, colores) {
    $('*').each((index, element) => {
       const clases = $(element).attr('class');
       if (clases && !clases.split(/\s+/).some(clase => clasesNegro.includes(clase) || clasesSinColor.includes(clase) || clasesConColor.includes(clase))) {
-            eliminarEtiqueta($, element);
+         eliminarEtiqueta($, element);
       }
    });
+
+   // Modificar texto de etiquetas específicas dentro del body
+   modificarTextoRespuesta($);
 
    // Guarda el HTML modificado
    fs.writeFileSync(archivoHtml, $.html(), 'utf8');
@@ -71,15 +85,15 @@ function procesarHtmlsEnCarpeta(carpeta) {
 
    fs.readdir(carpeta, (err, archivos) => {
       if (err) {
-            console.error('Error al leer la carpeta:', err);
-            return;
+         console.error('Error al leer la carpeta:', err);
+         return;
       }
 
       archivos.forEach(archivo => {
-            const rutaArchivo = path.join(carpeta, archivo);
-            if (path.extname(archivo) === '.htm') {
-               procesarHtml(rutaArchivo, colores);
-            }
+         const rutaArchivo = path.join(carpeta, archivo);
+         if (path.extname(archivo) === '.htm') {
+            procesarHtml(rutaArchivo, colores);
+         }
       });
    });
 }

@@ -2,5 +2,8 @@
   "dependencies": {
     "js-beautify": "^1.15.1",
     "jsdom": "^24.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
   }
 }

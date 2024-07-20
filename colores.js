@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// Verifica si un color es negro o no usando código hexadecimal
+// Verifica si un color es negro o no
 function isBlack(hex) {
    hex = hex.replace(/^#/, '');
 
@@ -42,6 +42,7 @@ function obtenerReglasParaClase(cssText, clase) {
 // Clasifica las clases en base a si tienen color o no
 function clasificarClasesPorColor(cssText, clases) {
    const clasesConColor = [];
+   const clasesNegro = [];
    const clasesSinColor = [];
 
    for (const clase of clases) {
@@ -51,62 +52,28 @@ function clasificarClasesPorColor(cssText, clases) {
       const colorMatch = /color\s*:\s*(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\s*;/i.exec(reglas);
       
       if (colorMatch) {
-            if (colorMatch[1].toLowerCase() === 'black') {
-               // Considera "black" como color negro
-               clasesConColor.push(clase);
-            } else {
-               // No es "black", así que evalúa si el color es negro usando código hexadecimal
-               if (isBlack(colorMatch[1])) {
-                  clasesConColor.push(clase);
-               }
-            }
+         if (colorMatch[1].toLowerCase() === 'black' || isBlack(colorMatch[1])) {
+            // Considera el negro como color
+            clasesNegro.push(clase);
+         } else {
+            clasesConColor.push(clase);
+         }
       } else {
-            clasesSinColor.push(clase);
+         clasesSinColor.push(clase);
       }
    }
 
    return {
       clasesConColor,
-      clasesSinColor
-   };
-}
-
-// Clasifica las clases con color en dos categorías: negro y no negro
-function clasificarClasesNegro(clasesConColor, cssText) {
-   const clasesNegro = [];
-   const clasesNoNegro = [];
-
-   for (const clase of clasesConColor) {
-      const reglas = obtenerReglasParaClase(cssText, clase);
-      
-      const colorMatch = /color\s*:\s*(#[0-9a-fA-F]{3,6}|[a-zA-Z]+)\s*;/i.exec(reglas);
-      
-      if (colorMatch) {
-         if (colorMatch[1].toLowerCase() === 'black' || isBlack(colorMatch[1])) {
-            clasesNegro.push(clase);
-         } else {
-            clasesNoNegro.push(clase);
-         }
-      }
-   }
-
-   return {
       clasesNegro,
-      clasesNoNegro
+      clasesSinColor
    };
 }
 
 // Función principal para obtener y clasificar las clases
 function obtenerDatosCSS(cssText) {
    const todasLasClases = obtenerTodasClases(cssText);
-   const clasificaciones = clasificarClasesPorColor(cssText, todasLasClases);
-   const clasificacionesNegro = clasificarClasesNegro(clasificaciones.clasesConColor, cssText);
-
-   return {
-      clasesConColor: clasificacionesNegro.clasesNoNegro,
-      clasesNegro: clasificacionesNegro.clasesNegro,
-      clasesSinColor: clasificaciones.clasesSinColor
-   };
+   return clasificarClasesPorColor(cssText, todasLasClases);
 }
 
 // Procesa un archivo CSS para obtener y clasificar las clases

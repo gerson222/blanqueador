@@ -2,13 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const cheerio = require('cheerio');
 
-// Lee el archivo JSON generado por colores.js
+// Define las clases adicionales a eliminar
+const clasesAdicionales = [
+   'nav','top-nav', 'top_nav'  // Añade aquí las clases que desees eliminar
+];
+
+// Lee el JSON generado por colores.js
 function leerColores() {
-   const archivoJson = path.join(__dirname, 'resultado.json');
-   const datosJson = fs.readFileSync(archivoJson, 'utf8');
-   const colores = JSON.parse(datosJson);
-   console.log('Colores leídos:', colores); // Verifica el contenido
-   return colores;
+   return JSON.parse(fs.readFileSync('resultado.json', 'utf8'));
 }
 
 // Elimina una etiqueta de un documento HTML
@@ -18,19 +19,17 @@ function eliminarEtiqueta($, selector) {
 
 // Elimina etiquetas basadas en los arrays obtenidos
 function procesarHtml(archivoHtml, colores) {
-   const { clasesConColor, coloresRojos } = colores;
+   const { clasesConColor, coloresRojos, clasesNegro, clasesSinColor } = colores;
    const html = fs.readFileSync(archivoHtml, 'utf8');
    const $ = cheerio.load(html);
-
-   console.log('Contenido original del archivo:', html); // Verifica el HTML original
 
    // Eliminar etiquetas con atributos class que contienen clases con color
    $('*[class]').each((index, element) => {
       const clases = $(element).attr('class').split(/\s+/);
       const tieneColor = clases.some(clase => clasesConColor.includes(clase));
-      if (tieneColor) {
-         console.log('Eliminando etiqueta con clase:', clases); // Verifica las clases
-         eliminarEtiqueta($, element);
+      const tieneClaseExtra = clases.some(clase => clasesAdicionales.includes(clase));
+      if (tieneColor || tieneClaseExtra) {
+            eliminarEtiqueta($, element);
       }
    });
 
@@ -39,8 +38,7 @@ function procesarHtml(archivoHtml, colores) {
       const style = $(element).attr('style');
       const tieneColorRojo = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
       if (tieneColorRojo) {
-         console.log('Eliminando etiqueta con style:', style); // Verifica el style
-         eliminarEtiqueta($, element);
+            eliminarEtiqueta($, element);
       }
    });
 
@@ -48,38 +46,40 @@ function procesarHtml(archivoHtml, colores) {
    $('img').each((index, element) => {
       const src = $(element).attr('src');
       if (src) {
-         const rutaImagen = path.join(path.dirname(archivoHtml), src);
-         if (!fs.existsSync(rutaImagen)) {
-               console.log('Eliminando imagen con src:', src); // Verifica el src
+            const rutaImagen = path.join(path.dirname(archivoHtml), src);
+            if (!fs.existsSync(rutaImagen)) {
                eliminarEtiqueta($, element);
-         }
+            }
+      }
+   });
+
+   // Eliminar etiquetas con clases no incluidas en clasesNegro, clasesSinColor o clasesConColor
+   $('*').each((index, element) => {
+      const clases = $(element).attr('class');
+      if (clases && !clases.split(/\s+/).some(clase => clasesNegro.includes(clase) || clasesSinColor.includes(clase) || clasesConColor.includes(clase))) {
+            eliminarEtiqueta($, element);
       }
    });
 
    // Guarda el HTML modificado
-   const htmlModificado = $.html();
-   console.log('Contenido modificado del archivo:', htmlModificado); // Verifica el HTML modificado
-   fs.writeFileSync(archivoHtml, htmlModificado, 'utf8');
+   fs.writeFileSync(archivoHtml, $.html(), 'utf8');
 }
 
 // Procesa todos los archivos HTML en la carpeta base
 function procesarHtmlsEnCarpeta(carpeta) {
    const colores = leerColores();
-   console.log('Colores cargados:', colores); // Verifica los colores
 
    fs.readdir(carpeta, (err, archivos) => {
       if (err) {
-         console.error('Error al leer la carpeta:', err);
-         return;
+            console.error('Error al leer la carpeta:', err);
+            return;
       }
 
-      console.log('Archivos en la carpeta:', archivos); // Verifica los archivos
-      
       archivos.forEach(archivo => {
-         const rutaArchivo = path.join(carpeta, archivo);
-         if (path.extname(archivo) === '.htm') {
+            const rutaArchivo = path.join(carpeta, archivo);
+            if (path.extname(archivo) === '.htm') {
                procesarHtml(rutaArchivo, colores);
-         }
+            }
       });
    });
 }

@@ -4,7 +4,7 @@ const path = require('path');
 // Colores predefinidos a mano (añade o modifica según necesites)
 const coloresManuales = {
    negros: ['black'], // Colores negros que quieres considerar
-   rojos: []   // Colores rojos que quieres considerar
+   rojos: ['#F00']   // Colores rojos que quieres considerar
 };
 
 // Conjuntos para almacenar colores únicos

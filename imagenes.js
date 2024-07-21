@@ -5,7 +5,7 @@ const Color = require('color');
 
 // Lista de colores rojos en RGB y hexadecimal
 const coloresRojos = [
-  '#FF0000', '#FF6347', '#FF4500', '#FE7E7E', '#FFBFBF', '#FE1818', // hexadecimal
+  '#FF0000', '#FF6347', '#FF4500', '#FE7E7E', '#FFBFBF', '#FE1818', '#ff3333', // hexadecimal
   'rgb(255, 0, 0)', 'rgb(255, 99, 71)', 'rgb(255, 69, 0)' // RGB
 ];
 

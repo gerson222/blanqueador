@@ -22,11 +22,11 @@ function modificarTextoRespuesta($) {
    $('body').find('p, h1, h2, h3, h4').each((index, element) => {
       const texto = $(element).text();
       if (texto.includes('Respuesta')) {
-         $(element).text('Respuesta:..........................');
-         $(element).removeAttr('class');
-         let currentStyle = $(element).attr('style') || '';
-         currentStyle += ' color: black; font-family: Calibri, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 12pt;';
-         $(element).attr('style', currentStyle);
+            $(element).text('Respuesta:..........................');
+            $(element).removeAttr('class');
+            let currentStyle = $(element).attr('style') || '';
+            currentStyle += ' color: black; font-family: Calibri, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 12pt;';
+            $(element).attr('style', currentStyle);
       }
    });
 }
@@ -37,18 +37,18 @@ function eliminarLineasEnBlanco($) {
 
    body.contents().each((index, element) => {
       if (!$(element).closest('table').length) {
-         if (element.nodeType === 3 && !$(element).text().trim()) {
-            $(element).remove();
-         }
+            if (element.nodeType === 3 && !$(element).text().trim()) {
+               $(element).remove();
+            }
       }
    });
 
    body.find('*').each((index, element) => {
       if (!$(element).closest('table').length) {
-         const elementHtml = $(element).html().trim();
-         if (elementHtml === '' && $(element).children().length === 0) {
-            $(element).remove();
-         }
+            const elementHtml = $(element).html().trim();
+            if (elementHtml === '' && $(element).children().length === 0) {
+               $(element).remove();
+            }
       }
    });
 }
@@ -59,21 +59,21 @@ function procesarLineasRepetidasYReemplazo($) {
 
    function procesarContenido(elementos) {
       elementos.each((index, element) => {
-         if (!$(element).closest('table').length) {
-            const lineaObjetivo = '<p style="text-indent: 0pt;text-align: left;"><br></p>';
-            const regexLineaObjetivo = new RegExp(lineaObjetivo, 'g');
+            if (!$(element).closest('table').length) {
+               const lineaObjetivo = '<p style="text-indent: 0pt;text-align: left;"><br></p>';
+               const regexLineaObjetivo = new RegExp(lineaObjetivo, 'g');
 
-            $(element).find('p').each((index, pElement) => {
-               let contenido = $(pElement).prop('outerHTML');
-               if (contenido.includes(lineaObjetivo) || contenido.includes('<p style="text-indent: 0pt;text-align: left;"></p>')) {
-                  $(pElement).replaceWith(lineaObjetivo);
-               }
-            });
+               $(element).find('p').each((index, pElement) => {
+                  let contenido = $(pElement).prop('outerHTML');
+                  if (contenido.includes(lineaObjetivo) || contenido.includes('<p style="text-indent: 0pt;text-align: left;"></p>')) {
+                        $(pElement).replaceWith(lineaObjetivo);
+                  }
+               });
 
-            let bodyHtml = $(element).html();
-            bodyHtml = bodyHtml.replace(new RegExp(`(${regexLineaObjetivo.source})(\\s*${regexLineaObjetivo.source})+`, 'g'), `$1`);
-            $(element).html(bodyHtml);
-         }
+               let bodyHtml = $(element).html();
+               bodyHtml = bodyHtml.replace(new RegExp(`(${regexLineaObjetivo.source})(\\s*${regexLineaObjetivo.source})+`, 'g'), `$1`);
+               $(element).html(bodyHtml);
+            }
       });
    }
 
@@ -81,7 +81,7 @@ function procesarLineasRepetidasYReemplazo($) {
 
    body.find('*').each((index, element) => {
       if (!$(element).closest('table').length) {
-         procesarContenido($(element));
+            procesarContenido($(element));
       }
    });
 }
@@ -92,60 +92,25 @@ function procesarHtml(archivoHtml, colores) {
    const html = fs.readFileSync(archivoHtml, 'utf8');
    const $ = cheerio.load(html);
 
-   $('*[class]').each((index, element) => {
-      if (!$(element).closest('table').length) {
-         const clases = $(element).attr('class').split(/\s+/);
-         const tieneColor = clases.some(clase => clasesConColor.includes(clase));
-         const tieneClaseExtra = clases.some(clase => clasesAdicionales.includes(clase));
-         if (tieneColor || tieneClaseExtra) {
-            eliminarEtiqueta($, element);
-         }
-      }
-   });
-
-   // Eliminar etiquetas sin clase pero con style que contenga colores rojos
-   $('*[style]').each((index, element) => {
-      if (!$(element).closest('table').length) {
-         const style = $(element).attr('style');
-         const clases = $(element).attr('class') ? $(element).attr('class').split(/\s+/) : [];
-
-         const tieneColorRojoEnStyle = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
-         const esClaseRoja = clases.some(clase => clasesConColor.includes(clase));
-         const esClaseNegra = clases.some(clase => clasesNegro.includes(clase));
-
-         // Condiciones para eliminar la etiqueta
-         if (esClaseRoja && !tieneColorRojoEnStyle) {
-            eliminarEtiqueta($, element);
-         } else if (esClaseNegra && tieneColorRojoEnStyle) {
-            eliminarEtiqueta($, element);
-         } else if (!clases.length && tieneColorRojoEnStyle) {
-            eliminarEtiqueta($, element);
-         } else if (clases.some(clase => clasesConColor.includes(clase)) && !tieneColorRojoEnStyle) {
-            eliminarEtiqueta($, element);
-         } else if (clases.some(clase => clasesNegro.includes(clase)) && tieneColorRojoEnStyle) {
-            eliminarEtiqueta($, element);
-         }
-      }
-   });
-
-   $('img').each((index, element) => {
-      if (!$(element).closest('table').length) {
-         const src = $(element).attr('src');
-         if (src) {
-            const rutaImagen = path.join(path.dirname(archivoHtml), src);
-            if (!fs.existsSync(rutaImagen)) {
-               eliminarEtiqueta($, element);
-            }
-         }
-      }
-   });
-
+   // Eliminar etiquetas basadas en las 5 situaciones especificadas
    $('*').each((index, element) => {
       if (!$(element).closest('table').length) {
-         const clases = $(element).attr('class');
-         if (clases && !clases.split(/\s+/).some(clase => clasesNegro.includes(clase) || clasesSinColor.includes(clase) || clasesConColor.includes(clase))) {
-            eliminarEtiqueta($, element);
-         }
+            const clases = $(element).attr('class') ? $(element).attr('class').split(/\s+/) : [];
+            const style = $(element).attr('style') || '';
+
+            const tieneClaseRoja = clases.some(clase => clasesConColor.includes(clase));
+            const tieneClaseNegra = clases.some(clase => clasesNegro.includes(clase));
+            const tieneColorRojoEnStyle = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
+
+            if (
+               (tieneClaseRoja && !tieneColorRojoEnStyle) ||
+               (!tieneClaseRoja && tieneColorRojoEnStyle) ||
+               (!clases.length && tieneColorRojoEnStyle) ||
+               (clasesConColor.includes(element.tagName.toLowerCase()) && !tieneColorRojoEnStyle) ||
+               (clasesNegro.includes(element.tagName.toLowerCase()) && tieneColorRojoEnStyle)
+            ) {
+               eliminarEtiqueta($, element);
+            }
       }
    });
 
@@ -162,15 +127,15 @@ function procesarHtmlsEnCarpeta(carpeta) {
 
    fs.readdir(carpeta, (err, archivos) => {
       if (err) {
-         console.error('Error al leer la carpeta:', err);
-         return;
+            console.error('Error al leer la carpeta:', err);
+            return;
       }
 
       archivos.forEach(archivo => {
-         const rutaArchivo = path.join(carpeta, archivo);
-         if (path.extname(archivo) === '.htm') {
-            procesarHtml(rutaArchivo, colores);
-         }
+            const rutaArchivo = path.join(carpeta, archivo);
+            if (path.extname(archivo) === '.htm') {
+               procesarHtml(rutaArchivo, colores);
+            }
       });
    });
 }

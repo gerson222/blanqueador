@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 
 // Define las clases adicionales a eliminar
 const clasesAdicionales = [
-   'nav', 'top-nav', 'top_nav'  // Añade aquí las clases que desees eliminar
+   'nav', 'top-nav', 'top_nav', 'toc'  // Añade aquí las clases que desees eliminar
 ];
 
 // Lee el JSON generado por colores.js
@@ -111,6 +111,19 @@ function procesarHtml(archivoHtml, colores) {
             ) {
                eliminarEtiqueta($, element);
             }
+      }
+   });
+
+   // Elimina imágenes con archivos faltantes
+   $('img').each((index, element) => {
+      if (!$(element).closest('table').length) {
+         const src = $(element).attr('src');
+         if (src) {
+            const rutaImagen = path.join(path.dirname(archivoHtml), src);
+            if (!fs.existsSync(rutaImagen)) {
+               eliminarEtiqueta($, element);
+            }
+         }
       }
    });
 

@@ -31,57 +31,47 @@ function modificarTextoRespuesta($) {
    });
 }
 
-// Elimina líneas completamente vacías dentro del body
-function eliminarLineasEnBlanco($) {
-   const body = $('body');
-
-   body.contents().each((index, element) => {
-      if (!$(element).closest('table').length) {
-            if (element.nodeType === 3 && !$(element).text().trim()) {
-               $(element).remove();
-            }
-      }
-   });
-
-   body.find('*').each((index, element) => {
-      if (!$(element).closest('table').length) {
-            const elementHtml = $(element).html().trim();
-            if (elementHtml === '' && $(element).children().length === 0) {
-               $(element).remove();
-            }
-      }
-   });
-}
-
 // Elimina líneas repetidas y reemplaza combinaciones específicas dentro del body, excepto en <table>
 function procesarLineasRepetidasYReemplazo($) {
    const body = $('body');
-
    function procesarContenido(elementos) {
       elementos.each((index, element) => {
             if (!$(element).closest('table').length) {
                const lineaObjetivo = '<p style="text-indent: 0pt;text-align: left;"><br></p>';
                const regexLineaObjetivo = new RegExp(lineaObjetivo, 'g');
-
                $(element).find('p').each((index, pElement) => {
                   let contenido = $(pElement).prop('outerHTML');
                   if (contenido.includes(lineaObjetivo) || contenido.includes('<p style="text-indent: 0pt;text-align: left;"></p>')) {
                         $(pElement).replaceWith(lineaObjetivo);
                   }
                });
-
                let bodyHtml = $(element).html();
                bodyHtml = bodyHtml.replace(new RegExp(`(${regexLineaObjetivo.source})(\\s*${regexLineaObjetivo.source})+`, 'g'), `$1`);
                $(element).html(bodyHtml);
             }
       });
    }
-
    procesarContenido(body);
-
    body.find('*').each((index, element) => {
       if (!$(element).closest('table').length) {
             procesarContenido($(element));
+      }
+   });
+}
+
+// // Elimina imágenes con archivos faltantes
+function eliminarImagenesNoExistentes($, archivoHtml) {
+   const carpetaBase = path.dirname(archivoHtml);
+   $('img').each((index, element) => {
+      if (!$(element).closest('table').length) {
+         const src = $(element).attr('src');
+         if (src) {
+               const rutaImagen = path.join(carpetaBase, src);
+               if (fs.existsSync(rutaImagen)) {
+               } else {
+                  eliminarEtiqueta($, element);
+               }
+         }
       }
    });
 }
@@ -101,34 +91,23 @@ function procesarHtml(archivoHtml, colores) {
             const tieneClaseRoja = clases.some(clase => clasesConColor.includes(clase));
             const tieneClaseNegra = clases.some(clase => clasesNegro.includes(clase));
             const tieneColorRojoEnStyle = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
+            const tieneClaseAdicional = clases.some(clase => clasesAdicionales.includes(clase));
 
             if (
                (tieneClaseRoja && !tieneColorRojoEnStyle) ||
                (!tieneClaseRoja && tieneColorRojoEnStyle) ||
                (!clases.length && tieneColorRojoEnStyle) ||
                (clasesConColor.includes(element.tagName.toLowerCase()) && !tieneColorRojoEnStyle) ||
-               (clasesNegro.includes(element.tagName.toLowerCase()) && tieneColorRojoEnStyle)
+               (clasesNegro.includes(element.tagName.toLowerCase()) && tieneColorRojoEnStyle)||
+               tieneClaseAdicional
             ) {
                eliminarEtiqueta($, element);
             }
       }
    });
 
-   // Elimina imágenes con archivos faltantes
-   $('img').each((index, element) => {
-      if (!$(element).closest('table').length) {
-         const src = $(element).attr('src');
-         if (src) {
-            const rutaImagen = path.join(path.dirname(archivoHtml), src);
-            if (!fs.existsSync(rutaImagen)) {
-               eliminarEtiqueta($, element);
-            }
-         }
-      }
-   });
-
+   eliminarImagenesNoExistentes($, archivoHtml);
    modificarTextoRespuesta($);
-   eliminarLineasEnBlanco($);
    procesarLineasRepetidasYReemplazo($);
 
    fs.writeFileSync(archivoHtml, $.html(), 'utf8');

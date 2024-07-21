@@ -19,7 +19,6 @@ function eliminarEtiqueta($, selector) {
 
 // Modifica el texto de las etiquetas específicas si contienen "Respuesta"
 function modificarTextoRespuesta($) {
-   // Selecciona las etiquetas p, h1, h2, h3, h4 dentro del body
    $('body').find('p, h1, h2, h3, h4').each((index, element) => {
       const texto = $(element).text();
       if (texto.includes('Respuesta')) {
@@ -36,17 +35,14 @@ function modificarTextoRespuesta($) {
 function eliminarLineasEnBlanco($) {
    const body = $('body');
 
-   // Buscar todas las líneas en el body
    body.contents().each((index, element) => {
       if (!$(element).closest('table').length) {
-         // Verifica si el nodo es una línea en blanco (espacios y tabulaciones no cuentan)
          if (element.nodeType === 3 && !$(element).text().trim()) {
             $(element).remove();
          }
       }
    });
 
-   // Elimina líneas vacías solo si son completamente vacías (sin etiquetas)
    body.find('*').each((index, element) => {
       if (!$(element).closest('table').length) {
          const elementHtml = $(element).html().trim();
@@ -61,15 +57,12 @@ function eliminarLineasEnBlanco($) {
 function procesarLineasRepetidasYReemplazo($) {
    const body = $('body');
 
-   // Función auxiliar para procesar el contenido excluyendo las tablas
    function procesarContenido(elementos) {
       elementos.each((index, element) => {
          if (!$(element).closest('table').length) {
-            // Define la cadena a reemplazar y la cadena de reemplazo
             const lineaObjetivo = '<p style="text-indent: 0pt;text-align: left;"><br></p>';
             const regexLineaObjetivo = new RegExp(lineaObjetivo, 'g');
 
-            // Reemplaza combinaciones de líneas
             $(element).find('p').each((index, pElement) => {
                let contenido = $(pElement).prop('outerHTML');
                if (contenido.includes(lineaObjetivo) || contenido.includes('<p style="text-indent: 0pt;text-align: left;"></p>')) {
@@ -77,7 +70,6 @@ function procesarLineasRepetidasYReemplazo($) {
                }
             });
 
-            // Elimina líneas repetidas
             let bodyHtml = $(element).html();
             bodyHtml = bodyHtml.replace(new RegExp(`(${regexLineaObjetivo.source})(\\s*${regexLineaObjetivo.source})+`, 'g'), `$1`);
             $(element).html(bodyHtml);
@@ -85,10 +77,8 @@ function procesarLineasRepetidasYReemplazo($) {
       });
    }
 
-   // Procesa el contenido del body excluyendo tablas
    procesarContenido(body);
 
-   // Procesa cada elemento del body que no esté dentro de una tabla
    body.find('*').each((index, element) => {
       if (!$(element).closest('table').length) {
          procesarContenido($(element));
@@ -102,7 +92,6 @@ function procesarHtml(archivoHtml, colores) {
    const html = fs.readFileSync(archivoHtml, 'utf8');
    const $ = cheerio.load(html);
 
-   // Eliminar etiquetas con atributos class que contienen clases con color
    $('*[class]').each((index, element) => {
       if (!$(element).closest('table').length) {
          const clases = $(element).attr('class').split(/\s+/);
@@ -118,14 +107,27 @@ function procesarHtml(archivoHtml, colores) {
    $('*[style]').each((index, element) => {
       if (!$(element).closest('table').length) {
          const style = $(element).attr('style');
-         const tieneColorRojo = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
-         if (tieneColorRojo) {
+         const clases = $(element).attr('class') ? $(element).attr('class').split(/\s+/) : [];
+
+         const tieneColorRojoEnStyle = coloresRojos.some(color => new RegExp(`color\\s*:\\s*${color}\\b`, 'i').test(style));
+         const esClaseRoja = clases.some(clase => clasesConColor.includes(clase));
+         const esClaseNegra = clases.some(clase => clasesNegro.includes(clase));
+
+         // Condiciones para eliminar la etiqueta
+         if (esClaseRoja && !tieneColorRojoEnStyle) {
+            eliminarEtiqueta($, element);
+         } else if (esClaseNegra && tieneColorRojoEnStyle) {
+            eliminarEtiqueta($, element);
+         } else if (!clases.length && tieneColorRojoEnStyle) {
+            eliminarEtiqueta($, element);
+         } else if (clases.some(clase => clasesConColor.includes(clase)) && !tieneColorRojoEnStyle) {
+            eliminarEtiqueta($, element);
+         } else if (clases.some(clase => clasesNegro.includes(clase)) && tieneColorRojoEnStyle) {
             eliminarEtiqueta($, element);
          }
       }
    });
 
-   // Eliminar imágenes con archivos faltantes
    $('img').each((index, element) => {
       if (!$(element).closest('table').length) {
          const src = $(element).attr('src');
@@ -138,7 +140,6 @@ function procesarHtml(archivoHtml, colores) {
       }
    });
 
-   // Eliminar etiquetas con clases no incluidas en clasesNegro, clasesSinColor o clasesConColor
    $('*').each((index, element) => {
       if (!$(element).closest('table').length) {
          const clases = $(element).attr('class');
@@ -148,16 +149,10 @@ function procesarHtml(archivoHtml, colores) {
       }
    });
 
-   // Modificar texto de etiquetas específicas dentro del body
    modificarTextoRespuesta($);
-
-   // Eliminar líneas en blanco dentro del body
    eliminarLineasEnBlanco($);
-
-   // Procesar líneas repetidas y reemplazos dentro del body, excepto en <table>
    procesarLineasRepetidasYReemplazo($);
 
-   // Guarda el HTML modificado
    fs.writeFileSync(archivoHtml, $.html(), 'utf8');
 }
 
